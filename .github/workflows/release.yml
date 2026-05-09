@@ -1,0 +1,41 @@
+name: AutoReturn Release Drafter
+
+on:
+  push:
+    tags:
+      - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
+
+jobs:
+  build:
+    name: Draft GitHub Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Build Lightweight Source Archive
+        run: |
+          # Create a clean source archive excluding massive AI models and build dirs
+          tar --exclude='./build_appimage' --exclude='./build_deb' --exclude='./.git' -czvf autoreturn-source.tar.gz .
+
+      - name: Create Release
+        id: create_release
+        uses: softprops/action-gh-release@v1
+        with:
+          draft: true
+          prerelease: false
+          name: Release ${{ github.ref_name }}
+          body: |
+            ## 🚀 AutoReturn ${{ github.ref_name }} is here!
+            
+            ### 📥 Download Links (Heavy Binaries)
+            Because the AppImage and DEB files bundle offline AI models (spaCy & Whisper), they exceed GitHub's 2GB file limit.
+            
+            *   **[Download AppImage (~3.7GB) - Google Drive Link Here]**
+            *   **[Download DEB Package (~3.1GB) - Google Drive Link Here]**
+            
+            ### 📦 Build Instructions
+            If you wish to build from source, download the source code below and run the packaging scripts located in the `appimage/` or `packaging/` directories.
+          files: autoreturn-source.tar.gz
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
