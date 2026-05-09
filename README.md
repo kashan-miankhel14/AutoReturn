@@ -239,6 +239,7 @@ Built on **PySide6 (Qt for Python)**, styled with custom CSS.
 
 ```text
 AutoReturn/
+├── .github/                       # CI/CD Pipelines (Testing & Release Drafter)
 ├── main.py                        # Application entry point
 ├── run.sh                         # Dev launcher script
 ├── requirements.txt               # Python dependencies
@@ -248,9 +249,9 @@ AutoReturn/
 │   ├── build_appimage.sh          # AppImage builder script
 │   ├── autoreturn.svg             # App icon
 │   ├── requirements-appimage.txt  # Bundled dependencies (no voice)
-│   └── build_issues/             # Documented build issues & fixes
+│   └── build_issues/              # Documented build issues & fixes
 ├── packaging/
-│   └── build_deb.sh              # DEB package builder script
+│   └── build_deb.sh               # DEB package builder script
 ├── src/
 │   ├── backend/
 │   │   ├── core/                  # Algorithms (Priority, Tone, Events, Drafts)
@@ -261,6 +262,8 @@ AutoReturn/
 │       ├── ui/                    # Main window (autoreturn_app.py)
 │       ├── dialogs/               # Auth, Settings, Reply, Event dialogs
 │       └── widgets/               # Tone selector, notification widgets
+├── testing_formal/                # Formal QA, Coverage, and Output metrics
+├── tests/                         # Unit & Integration Tests (Pytest)
 └── docs/                          # Architecture docs & algorithm writeups
 ```
 

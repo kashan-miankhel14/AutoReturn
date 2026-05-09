@@ -34,9 +34,9 @@ class TestSummaryQueueIntegration(unittest.TestCase):
         self.generator.queue = [{"id": "m_existing", "summary": ""}]
 
         messages = [
-            {"id": "m_existing", "summary": ""},
-            {"id": "m_new", "summary": ""},
-            {"id": "m_done", "summary": "already summarized"},
+            {"id": "m_existing", "summary": "", "full_content": "content"},
+            {"id": "m_new", "summary": "", "full_content": "content"},
+            {"id": "m_done", "summary": "already summarized", "full_content": "content"},
         ]
 
         with patch.object(self.generator, "process_queue") as mocked_process:

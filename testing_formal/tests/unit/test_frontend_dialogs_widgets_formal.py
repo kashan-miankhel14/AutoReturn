@@ -24,6 +24,12 @@ from testing_formal.tests.qt_utils import get_qapp
 
 class _FakeOrchestrator:
     class _ToneEngine:
+        class _UserProfile:
+            default_tone = "Formal"
+            
+        def __init__(self):
+            self.user_profile = self._UserProfile()
+
         # -------------------------
         # FUNCTION: analyze_incoming_tone
         # Purpose: Execute analyze incoming tone logic for this module.
